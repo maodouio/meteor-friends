@@ -1,6 +1,6 @@
 Package.describe({
   name: 'maodouio:friend',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'microduino friends package',
   // URL to the Git repository containing the source code for this package.
@@ -23,6 +23,7 @@ Package.onUse(function(api) {
 
   api.addFiles('lib/collection.js');
 
+  api.addFiles('server/method.js', 'server');
   api.addFiles('server/publications.js', 'server');
 
   api.export('Friends');
