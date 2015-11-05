@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'maodouio:friend',
+  name: 'maodouio:friends',
   version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'microduino friends package',
@@ -12,6 +12,8 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use('iron:router@1.0.12', ["server", "client"]);
+  api.use('aldeed:autoform@5.7.1', ["server", "client"]);
+  api.use('aldeed:collection2@2.5.0', ["server", "client"]);
   api.use('aldeed:simple-schema@1.3.2', ["server", "client"]);
   api.use('minimongo@1.0.10', 'client');
   api.use('mongo-livedata@1.0.9', 'client');
