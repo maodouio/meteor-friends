@@ -1,6 +1,6 @@
 Meteor.methods({
-  follow: function(userId, followingId) {
-    return false;
+  follow: function(followingId) {
+    userId = Meteor.userId();
     result = Friends.findOne({userId: userId, followingId: followingId});
     if (result) {
       Friends.update(result._id, {$set:{status: true, updatedAt: new Date()}});
@@ -13,7 +13,8 @@ Meteor.methods({
       });
     }
   },
-  unfollow: function(userId, followingId) {
+  unfollow: function(followingId) {
+    userId = Meteor.userId();
     result = Friends.findOne({userId: userId, followingId: followingId});
     if (result) {
       Friends.update(result._id, {$set:{updatedAt: new Date(), status: false}});
