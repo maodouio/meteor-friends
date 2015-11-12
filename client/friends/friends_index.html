@@ -1,33 +1,88 @@
 <template name="friendsIndex">
-  <h1>friendsIndex</h1>
-  <div class="cell">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>UserId</th>
-          <th>FollowingId</th>
-          <th>Created</th>
-          <th>Updated</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each friends}}
-        <tr>
-          <td><a href="{{pathFor 'friendShow'}}">{{userId}}</a></td>
-          <td>{{followingId}}</td>
-          <td>{{showPrettyTimestamp createdAt}}</td>
-          <td>{{showTimeAgo updatedAt}}</td>
-          <td>{{status}}</td>
-          <td>
-            <a class="btn btn-xs btn-default" href="{{pathFor 'friendShow'}}" role="button">Edit</a>
-            <a class="btn btn-xs btn-danger delete-post" href="#" role="button">Delete</a>
-            </td>
-        </tr>
-        {{else}}
-        No friends
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+    Add friend by entering id (test only):
+    <input type="text" id="friend-id"/>
+    <button id="add-friend">Add</button>
+    <div class="cell">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>UserId</th>
+            <th>FollowingId</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each friends}}
+          <tr>
+            <td><a href="{{pathFor 'friendShow'}}">{{userId}}</a></td>
+            <td>{{followingId}}</td>
+            <td>{{showPrettyTimestamp createdAt}}</td>
+            <td>{{showTimeAgo updatedAt}}</td>
+            <td>{{status}}</td>
+            <td>
+              <a class="btn btn-xs btn-default" href="{{pathFor 'friendShow'}}" role="button">Edit</a>
+              <a class="btn btn-xs btn-danger delete-friend" href="#" role="button">Delete</a>
+              </td>
+          </tr>
+          {{else}}
+          No friends
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div id="main" class="container">
+        <!-- Header -->
+        <div id="mheader">
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" class="active"><a href="#"><span class="icon-m-user"></span>My Friends</a></li>
+                <li role="presentation"><a href="#"><span class="icon-m-group"></span>My Group</a></li>
+            </ul>
+        </div>
+        <!-- /Header -->
+        <!-- List - My Module -->
+        <div id="mitemlist" class="container mt20">
+            <div class="row">
+                {{#each followedFriends}}
+                <div class="card card-user col-xs-4 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="category" href="javascript:void(0);"></a>
+                        <img class="picture" src="./data/item-2.png" alt="item-2">
+                        <span class="date">05 / May / 2015</span>
+                        <div class="primary">
+                            <div class="author row">
+                                <div class="col-xs-3">
+                                    <a class="avatar" href="javascript:void(0);"><img src="./data/avatar.png" alt=""></a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="name vertical-align-middle">Jellymesh</div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="vertical-align-middle">
+                                        <span class="icon-m-user-in"></span> 123
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="secondary">
+                            <div class="mbtn row">
+                                <div class="col-xs-12">
+                                    <button type="button" class="btn btn-lg btn-m-black">
+                                        <span class="glyphicon icon-m-minus" aria-hidden="true"></span> Unfollow
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <!-- /List - My Module -->
+        <h1>mCookie</h1>
+    </div>
+
 </template>
