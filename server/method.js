@@ -1,5 +1,6 @@
 Meteor.methods({
   follow: function(followingId) {
+    check(followingId, String);
     userId = Meteor.userId();
     result = Friends.findOne({userId: userId, followingId: followingId});
     if (result) {
@@ -14,6 +15,7 @@ Meteor.methods({
     }
   },
   unfollow: function(followingId) {
+    check(followingId, String);
     userId = Meteor.userId();
     result = Friends.findOne({userId: userId, followingId: followingId});
     if (result) {
