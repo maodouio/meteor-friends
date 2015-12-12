@@ -23,6 +23,8 @@ Meteor.methods({
     }
   },
   isfollowing: function(userId, followingId) {
+    check(userId, String);
+    check(followingId, String);
     result = Friends.findOne({userId: userId, followingId: followingId});
     if (result) {
       return result.status;
