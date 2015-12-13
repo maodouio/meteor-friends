@@ -9,6 +9,7 @@ Meteor.methods({
       Friends.insert({
         userId: userId,
         followingId: followingId,
+        followingUsername: Meteor.users.findOne(followingId).username,
         createdAt: new Date(),
         status: true
       });
