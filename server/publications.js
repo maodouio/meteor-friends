@@ -1,7 +1,7 @@
 // FRIENDS INDEX
 // -------------------------------------------------------
 Meteor.publish('friends', function() {
-  return Friends.find();
+  return Friends.find({userId: this.userId});
 });
 
 // FRIEND SHOW
