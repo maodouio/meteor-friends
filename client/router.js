@@ -30,9 +30,6 @@ Router.map(function() {
       return Meteor.subscribe('friends');
     },
     data: {
-      friends: function () {
-        return Friends.find({}, {sort: {createdAt: -1}});
-      },
       followedFriends: function() {
         return Friends.find({status: true}, {sort: {createdAt: -1}});
       }
@@ -47,7 +44,9 @@ Router.map(function() {
       return Meteor.subscribe('friend', this.params._id);
     },
     data: function () {
-      return Friends.findOne(this.params._id);
+      return {
+        isModal: false
+      };
     }
   });
 });
