@@ -8,5 +8,5 @@ Meteor.publish('friends', function() {
 // -------------------------------------------------------
 Meteor.publish('friend', function(id) {
   check(id, String);
-  return Friends.find(id);
+  return Friends.find({followingId: id});
 });
