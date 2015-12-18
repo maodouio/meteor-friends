@@ -53,7 +53,7 @@ Router.map(function() {
   this.route('friendNew', {
     controller: friendsController,
     template: 'friendNew',
-    path: '/friendsNew',
+    path: '/friendNew',
     waitOn: function () {
       return Meteor.subscribe('getUserList');
     },
