@@ -12,7 +12,6 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use('iron:router@1.0.12', ["server", "client"]);
-  api.use('accounts-ui@1.1.6', ["server", "client"]);
   api.use('accounts-password@1.1.4', ["server", "client"]);
   api.use('momentjs:moment@2.10.6', ["server", "client"]);
   api.use('aldeed:autoform@5.7.1', ["server", "client"]);
