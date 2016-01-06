@@ -3,8 +3,18 @@
 // ***************************************************************
 
 let friendsController = RouteController.extend({
-  onAfterAction: function () {
-    //return ReactionCore.MetaData.refresh(this.route, this.params);
+  onBeforeAction: function () {
+    if (!ReactionCore.hasPermission('account/profile')) {
+      this.render("layoutHeader", {
+        to: "layoutHeader"
+      });
+      this.render("layoutFooter", {
+        to: "layoutFooter"
+      });
+      this.render("unauthorized");
+    } else {
+      this.next();
+    }
   },
   yieldTemplates: {
     layoutHeader: {
