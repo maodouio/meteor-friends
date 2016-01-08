@@ -22,7 +22,7 @@ Meteor.methods({
     result = Friends.findOne({userId: userId, followingId: followingId});
     if (result) {
       Friends.update(result._id, {$set:{updatedAt: new Date(), status: false}});
-      ReactionCore.Collections.Accounts.update(followingId, { $inc: { followersNumber: 1 } });
+      ReactionCore.Collections.Accounts.update(followingId, { $inc: { followersNumber: -1 } });
     }
   },
   isfollowing: function(userId, followingId) {
