@@ -12,5 +12,5 @@ Meteor.publish('friend', function (id) {
 });
 
 Meteor.publish('authors', function () {
-    return Meteor.users.find({}, {fields: {_id: 1, /*services: 1,*/ username: 1, emails: 1}});
+    return Meteor.users.find({}, {fields: {_id: 1, /*services: 1,*/ username: 1, emails: 1, profile: 1}});
 });
