@@ -51,7 +51,7 @@ Router.map(function() {
     template: 'friendShow',
     path: '/friends/:_id',
     waitOn: function () {
-      return [Meteor.subscribe('friend', this.params._id)];
+      return [Meteor.subscribe('friend', this.params._id), Meteor.subscribe("Images")];
     },
     data: function () {
       return {
@@ -65,7 +65,7 @@ Router.map(function() {
     template: 'friendNew',
     path: '/friendNew',
     waitOn: function () {
-      return [Meteor.subscribe('authors')];
+      return [Meteor.subscribe('authors'), Meteor.subscribe("Images")];
     }
   });
 });
