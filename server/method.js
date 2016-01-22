@@ -14,7 +14,7 @@ Meteor.methods({
                 status: true
             });
         }
-        ReactionCore.Collections.Accounts.update(followingId, {$inc: {followersNumber: 1}});
+        ReactionCore.Collections.Accounts.update(followingId, {$inc: {followersNumber: 1}, $push: {followersId: userId}});
     },
     unfollow: function (followingId) {
         check(followingId, String);
@@ -22,7 +22,7 @@ Meteor.methods({
         let result = Friends.findOne({userId: userId, followingId: followingId});
         if (result) {
             Friends.update(result._id, {$set: {updatedAt: new Date(), status: false}});
-            ReactionCore.Collections.Accounts.update({_id: followingId, followersNumber: {$gt: 0}}, {$inc: {followersNumber: -1}});
+            ReactionCore.Collections.Accounts.update({_id: followingId, followersNumber: {$gt: 0}}, {$inc: {followersNumber: -1}, $pull: {followersId: userId}});
         }
     },
     isfollowing: function (userId, followingId) {
