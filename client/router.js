@@ -20,9 +20,6 @@ let friendsController = RouteController.extend({
     layoutHeader: {
       to: "layoutHeader"
     },
-    layoutFooter: {
-      to: "layoutFooter"
-    },
     dashboard: {
       to: "dashboard"
     }
