@@ -34,7 +34,7 @@ Router.map(function() {
     template: 'friendsIndex',
     path: '/friends',
     waitOn: function () {
-      return [Meteor.subscribe('friends'), Meteor.subscribe('authors'), Meteor.subscribe("Images")];
+      return [ReactionCore.subsManager.subscribe('friends'), ReactionCore.subsManager.subscribe('authors'), ReactionCore.subsManager.subscribe("Images")];
     },
     data: {
       followedFriends: function() {
@@ -48,7 +48,7 @@ Router.map(function() {
     template: 'friendShow',
     path: '/friends/:_id',
     waitOn: function () {
-      return [Meteor.subscribe('friend', this.params._id), Meteor.subscribe("Images")];
+      return [ReactionCore.subsManager.subscribe('friend', this.params._id), ReactionCore.subsManager.subscribe("Images")];
     },
     data: function () {
       return {
@@ -62,7 +62,7 @@ Router.map(function() {
     template: 'friendNew',
     path: '/friendNew',
     waitOn: function () {
-      return [Meteor.subscribe('authors'), Meteor.subscribe("Images")];
+      return [ReactionCore.subsManager.subscribe('authors'), ReactionCore.subsManager.subscribe("Images")];
     }
   });
 });
