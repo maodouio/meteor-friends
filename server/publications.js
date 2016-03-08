@@ -11,6 +11,23 @@ Meteor.publish('friend', function (id) {
     return Friends.find({followingId: id});
 });
 
-Meteor.publish('authors', function () {
-    return Meteor.users.find({}, {fields: {_id: 1, /*services: 1,*/ username: 1, emails: 1, profile: 1}});
+Meteor.publish('authors', function (articleId) {
+  check(articleId, Match.OptionalOrNull(String));
+  let article = Articles.findOne(articleId);
+  let selector = {};
+
+  if (article) {
+    selector = {
+      "_id": article.authorId
+    };
+  }
+
+  return Meteor.users.find(selector, {
+    fields: {
+      _id: 1,
+      username: 1,
+      emails: 1,
+      profile: 1
+    }
+  });
 });
