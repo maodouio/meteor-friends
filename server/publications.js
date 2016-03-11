@@ -11,6 +11,10 @@ Meteor.publish('friend', function (id) {
     return Friends.find({followingId: id});
 });
 
+Meteor.publish('myFriends', function () {
+    return Friends.find({userId: this.userId});
+});
+
 Meteor.publish('authors', function (articleId) {
   check(articleId, Match.OptionalOrNull(String));
   let article = Articles.findOne(articleId);
