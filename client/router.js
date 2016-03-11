@@ -32,15 +32,7 @@ Router.map(function() {
   this.route('friendsIndex', {
     controller: friendsController,
     template: 'friendsIndex',
-    path: '/friends',
-    waitOn: function () {
-      return [ReactionCore.subsManager.subscribe('friends'), ReactionCore.subsManager.subscribe('authors'), ReactionCore.subsManager.subscribe("Images")];
-    },
-    data: {
-      followedFriends: function() {
-        return Friends.find({status: true}, {sort: {createdAt: -1}});
-      }
-    }
+    path: '/friends'
   });
 
   this.route('friendShow', {
