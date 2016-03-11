@@ -39,9 +39,6 @@ Router.map(function() {
     controller: friendsController,
     template: 'friendShow',
     path: '/friends/:_id',
-    waitOn: function () {
-      return [ReactionCore.subsManager.subscribe('friend', this.params._id), ReactionCore.subsManager.subscribe("Images")];
-    },
     data: function () {
       return {
         isModal: false
@@ -52,9 +49,6 @@ Router.map(function() {
   this.route('friendNew', {
     controller: friendsController,
     template: 'friendNew',
-    path: '/friendNew',
-    waitOn: function () {
-      return [ReactionCore.subsManager.subscribe('authors'), ReactionCore.subsManager.subscribe("Images")];
-    }
+    path: '/friendNew'
   });
 });

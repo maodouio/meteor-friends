@@ -67,3 +67,27 @@ Meteor.publish('authors', function (articleId) {
     }
   });
 });
+
+Meteor.publish('friends/user', function (userId) {
+  check(userId, Match.OptionalOrNull(String));
+
+  return Meteor.users.find({
+    _id: userId
+  }, {
+    fields: {
+      _id: 1,
+      username: 1,
+      emails: 1,
+      profile: 1
+    }
+  });
+});
+
+Meteor.publish('friends/userImage', function (userId) {
+  check(userId, Match.OptionalOrNull(String));
+
+  return Images.find({
+      "metadata.ownerId": userId,
+      limit: 1
+  });
+});
