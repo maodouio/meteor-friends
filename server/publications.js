@@ -11,35 +11,6 @@ Meteor.publish('friend', function (id) {
     return Friends.find({followingId: id});
 });
 
-Meteor.publish("friendsUsers", function () {
-    let selector = {};
-    let users = [this.userId];
-    let friends = Friends.find({
-        userId: this.userId,
-        status: true
-    }).fetch();
-
-    if (friends.length) {
-        _.each(friends, function (friend) {
-            users.push(friend.followingId);
-        });
-        selector = {
-            "_id": {
-                $in: users
-            }
-        };
-    }
-
-    return Meteor.users.find(selector, {
-        fields: {
-            _id: 1,
-            username: 1,
-            emails: 1,
-            profile: 1
-        }
-    });
-});
-
 Meteor.publish('myFriends', function () {
     return Friends.find({
       userId: this.userId,
@@ -89,5 +60,64 @@ Meteor.publish('friends/userImage', function (userId) {
   return Images.find({
       "metadata.ownerId": userId,
       limit: 1
+  });
+});
+
+Meteor.publish("friends/users", function () {
+  let selector = {};
+  let users = [this.userId];
+  let friends = Friends.find({
+    userId: this.userId,
+    status: true
+  }).fetch();
+
+  if (friends.length) {
+    _.each(friends, function (friend) {
+      users.push(friend.followingId);
+    });
+    selector = {
+      "_id": {
+        $in: users
+      }
+    };
+  }
+
+  return Meteor.users.find(selector, {
+    fields: {
+      _id: 1,
+      username: 1,
+      emails: 1,
+      profile: 1
+    }
+  });
+});
+
+Meteor.publish("friends/accounts", function () {
+  let selector = {};
+  let accounts = [];
+  let Accounts = ReactionCore.Collections.Accounts;
+  let friends = Friends.find({
+    userId: this.userId,
+    status: true
+  }).fetch();
+
+  if (friends.length) {
+    _.each(friends, function (friend) {
+      accounts.push(friend.followingId);
+    });
+    selector = {
+      "_id": {
+        $in: accounts
+      }
+    };
+  }
+
+  return Accounts.find(selector, {
+    fields: {
+      _id: 1,
+      username: 1,
+      emails: 1,
+      profile: 1
+    }
   });
 });
