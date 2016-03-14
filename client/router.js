@@ -3,8 +3,11 @@
 // ***************************************************************
 
 let friendsController = RouteController.extend({
-  onBeforeAction: function () {
-    if (!ReactionCore.hasPermission('account/profile')) {
+  onBeforeAction: function() {
+    let user = Meteor.user();
+    if (user && user.username) {
+      this.next();
+    } else {
       this.render("layoutHeader", {
         to: "layoutHeader"
       });
@@ -12,8 +15,6 @@ let friendsController = RouteController.extend({
         to: "layoutFooter"
       });
       this.render("unauthorized");
-    } else {
-      this.next();
     }
   },
   yieldTemplates: {
