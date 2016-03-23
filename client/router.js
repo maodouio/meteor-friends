@@ -39,7 +39,7 @@ Router.map(function() {
   this.route('friendShow', {
     name: 'friendShow',
     controller: friendsController,
-    template: 'friendShow',
+    template: 'friendsIndex',
     path: '/friends/:_id',
     waitOn: function() {
       Session.set('currentFriendId', this.params._id);
@@ -62,10 +62,9 @@ Router.map(function() {
       ReactionCore.subsManager.subscribe("friends/user", this.params._id);
       // window.location.href = "/friends/" + this.params._id;
     },
-    data: function () {
-      return {
-        isModal: false
-      };
+    action: function () {
+      Modal.show('friendShowMicroduino');
+      this.render();
     }
   });
 
