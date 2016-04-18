@@ -58,7 +58,8 @@ Meteor.publish('friends/userImage', function(userId) {
   check(userId, Match.OptionalOrNull(String));
 
   return Images.find({
-    "metadata.ownerId": userId
+    "metadata.ownerId": userId,
+    "metadata.variantId": {$ne: null}
   }, {limit: 1, sort: {updatedAt: -1}});
 });
 
