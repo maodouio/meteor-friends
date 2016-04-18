@@ -54,13 +54,12 @@ Meteor.publish('friends/user', function (userId) {
   });
 });
 
-Meteor.publish('friends/userImage', function (userId) {
+Meteor.publish('friends/userImage', function(userId) {
   check(userId, Match.OptionalOrNull(String));
 
   return Images.find({
-      "metadata.ownerId": userId,
-      limit: 1
-  });
+    "metadata.ownerId": userId
+  }, {limit: 1, sort: {updatedAt: -1}});
 });
 
 Meteor.publish("friends/users", function () {
